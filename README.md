@@ -16,8 +16,8 @@ A romantic, animated web app that simulates opening a love letter from an envelo
 
 ## 💡 Customization
 
-Modify the letter content in the .letter div
-Change heart colors and number in the JavaScript section
+- Modify the letter content in the .letter div
+- Change heart colors and number in the JavaScript section
 
 ## 🚀 How to Use
 
