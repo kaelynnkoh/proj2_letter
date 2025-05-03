@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Love Letter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+    }
+
+    .envelope {
+      width: 260px;
+      height: 160px;
+      background-color: #fff;
+      border: 2px solid #d33f49;
+      border-radius: 8px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      animation: float 2s ease-in-out infinite;
+      perspective: 600px;
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      background-color: #d33f49;
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      transform-origin: top center;
+      transition: transform 0.6s ease;
+    }
+
+    .envelope.open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .letter {
+      width: 240px;
+      height: 190px;
+      background: #fff0f5;
+      border: 1px solid #d33f49;
+      padding: 5px;
+      box-sizing: border-box;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(60%) scale(0);
+      opacity: 0;
+      transition: all 0.6s ease-in-out;
+      transition-delay: 0s;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      z-index: -1;
+      font-family: 'Playfair Display', cursive;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .envelope.open .letter {
+      transform: translateX(-50%) translateY(-100%) scale(1);
+      opacity: 1;
+      transition-delay: 0.4s;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: floatUp 2s ease-out forwards;
+      z-index: 0;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(1.5);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="envelope" onclick="openLetter()">
+    <div class="flap"></div>
+    <div class="letter">
+      <p>To the love of my life,</p>
+      <p>You light up my world like nobody else 💖</p>
+      <p>Kaelyn</p>
+    </div>
+  </div>
+
+  <script>
+    function openLetter() {
+      const envelope = document.querySelector('.envelope');
+      envelope.classList.toggle('open');
+
+      if (envelope.classList.contains('open')) {
+        for (let i = 0; i < 10; i++) {
+          const heart = document.createElement('div');
+          heart.classList.add('heart');
+          heart.style.left = `${Math.random() * 200 + 30}px`;
+          heart.style.bottom = `0px`;
+          heart.style.animationDelay = `${Math.random() * 0.5}s`;
+          document.body.appendChild(heart);
+
+          setTimeout(() => {
+            heart.remove();
+          }, 2000);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
